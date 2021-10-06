@@ -1,0 +1,81 @@
+import java.io.*;
+import java.util.Scanner;
+class Productp
+{
+	int pc,pr;
+	String pn;
+	void read()
+	{
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the product code: ");
+		pc=sc.nextInt();
+		try
+		{
+		if(pc>4)throw new InvalidLengthException();
+		}
+		catch(InvalidLengthException e)
+		{
+			System.out.println("code length should be less than 4!!");
+		}
+		System.out.println("Enter the product name: ");
+		pn=sc.next();
+		try
+		{
+		if(pn.length()>15)throw new InvalidNameException();
+		}
+		catch(InvalidNameException e)
+		{
+			System.out.println("Name length should be less than 15!!");
+		}
+		System.out.println("Enter the product price: ");
+		pr=sc.nextInt();
+	}
+	
+	void display()
+	{
+	  	
+	  	System.out.println("Product code: "+pc);
+	  	System.out.println("Product name: "+pn);
+	  	System.out.println("Product price: "+pr);
+        }	
+}
+
+class ProductSam
+{
+	public static void main(String args[])throws IOException
+	{	
+		int l;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the limit: ");
+		l=sc.nextInt();
+		Productp pe=new Productp();
+		Productp p[]=new Productp[l];
+		for(int i=0;i<l;i++)
+		{
+			p[i]=new Productp();
+			p[i].read();
+		}
+		
+		for(int i=0;i<l;i++)
+		{
+			
+			p[i].display();
+		}
+	        //int min=p[i].pr;
+		for(int i=0;i<l;i++)
+		{
+			if(p[i].pr<p[i+1].pr)
+			{
+				 p[i].display();
+			}
+			else
+			{
+				
+				p[i+1].display();
+			}
+		}
+                
+	}
+}
+
